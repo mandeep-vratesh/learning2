@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#ffffff">
+
+    <TextView
+        android:text="Programming Operator Precedence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/heading"
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="normal|bold"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <TextView
+        android:text="and Associativity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/heading2"
+        android:textSize="25sp"
+        android:textStyle="normal|bold"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/content1"
+        android:layout_marginTop="10dp"
+        android:text="Programming supports wide range of operators. While Solving the Expression we must follow some rules."
+        android:textSize="18sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/background_dark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/content2"
+        android:layout_marginTop="10dp"
+        android:text="While solving the expression [ a + b *c ] , we should first perform Multiplication Operation and then Addition, similarly in order to solve such complicated expression you should have hands on Operator Precedence and Associativity of Operators."
+        android:textSize="18sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/background_dark" />
+
+</LinearLayout>
