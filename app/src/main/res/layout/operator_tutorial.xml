@@ -128,12 +128,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/content6"
                 android:layout_marginTop="10dp"
-                android:text=""
+                android:text="@string/code1"
                 android:textSize="18sp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textColor="@android:color/background_dark"
-                android:gravity="fill_horizontal" />
+                android:gravity="fill_horizontal"
+                android:padding="10dp"
+                android:background="#aaa" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
