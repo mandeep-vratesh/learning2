@@ -67,7 +67,8 @@
             android:layout_marginBottom="10dp"
             android:textColor="#ffffff"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:id="@+id/operator_learn" />
 
         <Button
             android:layout_height="50dp"
@@ -81,7 +82,8 @@
             android:textAllCaps="true"
             android:layout_marginBottom="10dp"
             android:textColor="#ffffff"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:id="@+id/operator_practice" />
     </LinearLayout>
 
     <!--</ScrollView>-->
