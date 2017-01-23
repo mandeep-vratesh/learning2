@@ -1,14 +1,4 @@
 <resources>
     <string name="app_name">Learning</string>
-    <string name="code1">#include<stdio.h>\n\n
-
-int main() {
-  int num1 = 10, num2 = 20;
-  int result;
-
-  result = num1 * 2 + num2;
-  printf("\nResult is : %d", result);
-
-  return (0);
-}</string>
+    <string name="code1"></string>
 </resources>
