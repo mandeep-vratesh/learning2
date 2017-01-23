@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
         operator_practice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_practice = new Intent(MainActivity.this,Operator_learn.class);
+                Intent go_to_practice = new Intent(MainActivity.this,Operator_practice.class);
                 startActivity(go_to_practice);
             }
         });

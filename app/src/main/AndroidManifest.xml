@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".Operator_practice"
             android:screenOrientation="landscape">
 
@@ -23,6 +24,14 @@
         <activity android:name=".Operator_learn"
             android:screenOrientation="landscape">
 
+=======
+        <activity android:name=".Operator_learn"
+            android:screenOrientation="landscape">
+        </activity>
+
+        <activity android:name=".Operator_practice"
+            android:screenOrientation="landscape">
+>>>>>>> 9e0ac387e9eec0d7e106c2b3abfbc55dbeb648e0
         </activity>
     </application>
 
