@@ -10,27 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:id="@+id/container">
 
-        <Button
-            android:text="2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button1"
-            android:layout_weight="1" />
-        <Button
-            android:text="+"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button2"
-            android:layout_weight="1" />
-        <Button
-            android:text="3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button3"
-            android:layout_weight="1" />
     </LinearLayout>
+
+    <Button
+        android:text="Run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/run" />
 </LinearLayout>
