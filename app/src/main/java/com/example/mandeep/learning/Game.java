@@ -36,15 +36,18 @@ public class Game {
      * @param input the string array of operators.
      * @return the operator with max precedence
      */
-    public String findHighestOperator(String[] input){
-        String hasMaxPrecedence = input[0];
+    public int findHighestOperator(ArrayList<Node> input){
+        String hasMaxPrecedence = input.get(0).getButton().getText().toString();
+        int hasMaxPrecedenceIndex = 0,index=0;
 
-        for (String i : input) {
-            if(precedence_table.get(i) < precedence_table.get(hasMaxPrecedence)){
-                hasMaxPrecedence = i;
+        for (Node i : input) {
+            index++;
+            if(precedence_table.get(i.getButton().getText().toString()) < precedence_table.get(hasMaxPrecedence)){
+                hasMaxPrecedence = i.getButton().getText().toString();
+                hasMaxPrecedenceIndex = index-1;
             }
         }
-        return hasMaxPrecedence;
+        return hasMaxPrecedenceIndex;
     }
 
     public void removeFromGame(ArrayList<Node> arrayList, String operator, int index) {
@@ -53,9 +56,6 @@ public class Game {
         //TODO: solve them
         //TODO: add it to index+post+1
 
-//        System.out.println(arrayList);
-//        System.out.println(operator);
-//        System.out.println(index);
         //remove the following ones
         for (int i=0; i<post_remove_table.get(operator); i++){
             arrayList.remove(index+1);
@@ -72,6 +72,18 @@ public class Game {
         linearLayout.removeAllViews();
         for (Node i: arrayList ) {
             linearLayout.addView(i.getButton());
+        }
+    }
+
+    /**
+     *
+     * @param arrayList
+     * @param index
+     * @param from
+     */
+    public void getNodesToRemove(ArrayList<Node> arrayList, int index, ArrayList<Node> from) {
+        for (int i=-pre_remove_table.get(from.get(index).getButton().getText().toString()); i<post_remove_table.get(from.get(index).getButton().getText().toString());i++){
+            arrayList.add(from.get(index+i));
         }
     }
 }

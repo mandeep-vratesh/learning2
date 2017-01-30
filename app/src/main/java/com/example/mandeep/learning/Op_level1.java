@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 
 public class Op_level1 extends Activity{
-    String[] input = {"*","2", "+", "3","*"};
-    ArrayList<Node> nodes;
+    String[] string_input = {"*","2", "+", "3","*"};
+    ArrayList<Node> nodes,active_nodes,result_nodes;
     private Button run;
     private Game game = new Game();
 
@@ -33,7 +33,7 @@ public class Op_level1 extends Activity{
         int node_index=0;
 
         //adding buttons to the layout
-        for (String i : input) {
+        for (String i : string_input) {
             //create a button
             Button button = new Button(this);
             button.setText(i);
@@ -72,13 +72,37 @@ public class Op_level1 extends Activity{
         run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //game.findHighestOperator(input);//TODO:
-                game.removeFromGame(nodes,"+",2);
+
+                //clear the active nodes
+                active_nodes.clear();
+                result_nodes.clear();
+
+                //find the active buttons and put them in an arraylist
                 for (Node i: nodes) {
+                    if(i.isActive()){
+                        active_nodes.add(i);
+                    }
+                }
+
+                //send this arraylist to find the highest precedence operator and the elements to be removed
+                int withHighestPrecedence = game.findHighestOperator(nodes);
+
+                //add result nodes
+                game.getNodesToRemove(result_nodes, withHighestPrecedence, nodes);
+
+                //compare the active nodes and the result nodes from above
+                //if(compare(active_nodes,result_nodes)){
+                    //remove the active nodes from game
+                //}else{
+                    //vibrate();
+                //}
+                //game.removeFromGame(nodes,nodes.get(withHighestPrecedence).getButton().getText().toString(),withHighestPrecedence);
+
+                for (Node i: result_nodes) {
                     System.out.println(i.getButton().getText());
                 }
-                System.out.println();
-                game.mountAgain(nodes,container);
+
+                //game.mountAgain(nodes,container);
             }
         });
     }
