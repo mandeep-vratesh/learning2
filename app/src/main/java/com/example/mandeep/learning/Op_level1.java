@@ -1,15 +1,18 @@
 package com.example.mandeep.learning;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Debug;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,7 @@ public class Op_level1 extends Activity{
     ArrayList<Node> nodes,active_nodes,result_nodes;
     private Button run;
     private Game game = new Game();
+    int pushIndex;
 
     @Override
     protected void onStart() {
@@ -94,22 +98,47 @@ public class Op_level1 extends Activity{
                 //add result nodes
                 game.getNodesToRemove(result_nodes, withHighestPrecedence, nodes);
 
-                for (Node i: result_nodes) {
-                    Log.d("===============>",i.getButton().getText().toString());
-                }
                 //compare the active nodes and the result nodes from above
-                //if(compare(active_nodes,result_nodes)){
-                    //remove the active nodes from game
-                //}else{
-                    //vibrate();
-                //}
-                //game.removeFromGame(nodes,nodes.get(withHighestPrecedence).getButton().getText().toString(),withHighestPrecedence);
+                if(game.compare(active_nodes,result_nodes)){
+                    Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
+                    //TODO:solve the expression
+                    int result = 0;
+                    for (Node i: active_nodes) {
+                        pushIndex = nodes.indexOf(i);
+                        nodes.remove(i);
+                    }
 
-//                for (Node i: result_nodes) {
-//                    System.out.println(i.getButton().getText());
-//                }
+                    Button button = new Button(getApplicationContext());
+                    button.setText(""+result);
+                    button.setGravity(Gravity.CENTER);
+                    for (final Node i : nodes)
+                        i.getButton().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (!i.isActive()) {
+                                    i.setActive(true);
+                                    i.getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                                } else {
+                                    i.setActive(false);
+                                    i.getButton().getBackground().clearColorFilter();
+                                }
+                            }
+                        });
 
-                //game.mountAgain(nodes,container);
+                    //adding button to the nodes
+                    nodes.add(pushIndex, new Node(button,false));
+
+                    for (Node i: nodes) {
+                        Log.d("===============>",i.getButton().getText().toString()+" "+nodes.indexOf(i));
+                    }
+
+                    //refreshing the container
+                    game.mountAgain(nodes,container);
+                }else{
+                    Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    v.vibrate(200);
+                    Toast.makeText(getApplicationContext(), "Check for the highest operator", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

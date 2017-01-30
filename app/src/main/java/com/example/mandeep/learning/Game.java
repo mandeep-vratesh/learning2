@@ -31,6 +31,10 @@ public class Game {
         pre_remove_table.put("++",1);
         post_remove_table.put("++",1);
 
+        precedence_table.put("0",100);
+        pre_remove_table.put("0",0);
+        post_remove_table.put("0",0);
+
         precedence_table.put("1",100);
         pre_remove_table.put("1",0);
         post_remove_table.put("1",0);
@@ -86,6 +90,7 @@ public class Game {
         for (Node i: arrayList ) {
             linearLayout.addView(i.getButton());
         }
+        Log.d("===============>","mounted again");
     }
 
     /**
@@ -98,5 +103,25 @@ public class Game {
         for (int i=-pre_remove_table.get(from.get(index).getButton().getText().toString()); i<=post_remove_table.get(from.get(index).getButton().getText().toString());i++){
             result_nodes.add(from.get(index+i));
         }
+    }
+
+    /**
+     *
+     * @param active_nodes
+     * @param result_nodes
+     * @return
+     */
+    public boolean compare(ArrayList<Node> active_nodes, ArrayList<Node> result_nodes) {
+        for (Node i : active_nodes) {
+            if(result_nodes.contains(i)){
+                result_nodes.remove(i);
+            }else{
+                return false;
+            }
+        }
+        if(result_nodes.isEmpty())
+            return true;
+        else
+            return false;
     }
 }
