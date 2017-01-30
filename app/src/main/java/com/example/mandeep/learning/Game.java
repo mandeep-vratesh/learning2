@@ -1,5 +1,6 @@
 package com.example.mandeep.learning;
 
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -29,23 +30,31 @@ public class Game {
         precedence_table.put("++",1);
         pre_remove_table.put("++",1);
         post_remove_table.put("++",1);
+
+        precedence_table.put("2",100);
+        pre_remove_table.put("2",0);
+        post_remove_table.put("2",0);
+
+        precedence_table.put("3",100);
+        pre_remove_table.put("3",0);
+        post_remove_table.put("3",0);
     }
 
     /**
      * The method finds out the operator with max precedence in the given array of operators.
      * @param input the string array of operators.
-     * @return the operator with max precedence
+     * @return the index of operator with max precedence
      */
     public int findHighestOperator(ArrayList<Node> input){
         String hasMaxPrecedence = input.get(0).getButton().getText().toString();
         int hasMaxPrecedenceIndex = 0,index=0;
-
+        
         for (Node i : input) {
-            index++;
-            if(precedence_table.get(i.getButton().getText().toString()) > precedence_table.get(hasMaxPrecedence)){
+            if(precedence_table.get(i.getButton().getText().toString()) < precedence_table.get(hasMaxPrecedence)){
                 hasMaxPrecedence = i.getButton().getText().toString();
                 hasMaxPrecedenceIndex = index;
             }
+        index++;
         }
         return hasMaxPrecedenceIndex;
     }
