@@ -42,9 +42,9 @@ public class Game {
 
         for (Node i : input) {
             index++;
-            if(precedence_table.get(i.getButton().getText().toString()) < precedence_table.get(hasMaxPrecedence)){
+            if(precedence_table.get(i.getButton().getText().toString()) > precedence_table.get(hasMaxPrecedence)){
                 hasMaxPrecedence = i.getButton().getText().toString();
-                hasMaxPrecedenceIndex = index-1;
+                hasMaxPrecedenceIndex = index;
             }
         }
         return hasMaxPrecedenceIndex;

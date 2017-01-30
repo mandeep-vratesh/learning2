@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Debug;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +32,8 @@ public class Op_level1 extends Activity{
         final LinearLayout container = (LinearLayout) findViewById(R.id.container);
         //arraylist of node
         nodes = new ArrayList<>();
+        active_nodes = new ArrayList<>();
+        result_nodes = new ArrayList<>();
         int node_index=0;
 
         //adding buttons to the layout
@@ -39,18 +43,18 @@ public class Op_level1 extends Activity{
             button.setText(i);
             button.setGravity(Gravity.CENTER);
             //adding button to the node
-            nodes.add(new Node(button,true));
+            nodes.add(new Node(button,false));
             //setting on click listener
             final int finalNode_index = node_index;
             nodes.get(node_index).getButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(nodes.get(finalNode_index).isActive()) {
-                        nodes.get(finalNode_index).setActive(false);
+                    if(!nodes.get(finalNode_index).isActive()) {
+                        nodes.get(finalNode_index).setActive(true);
                         nodes.get(finalNode_index).getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                     }
                     else {
-                        nodes.get(finalNode_index).setActive(true);
+                        nodes.get(finalNode_index).setActive(false);
                         nodes.get(finalNode_index).getButton().getBackground().clearColorFilter();
                     }
                 }
@@ -73,7 +77,7 @@ public class Op_level1 extends Activity{
             @Override
             public void onClick(View view) {
 
-                //clear the active nodes
+                //clear the active nodes and result nodes
                 active_nodes.clear();
                 result_nodes.clear();
 
@@ -84,11 +88,15 @@ public class Op_level1 extends Activity{
                     }
                 }
 
+                for (Node i: active_nodes) {
+                    Log.d("===============>",i.getButton().getText().toString());
+                }
+
                 //send this arraylist to find the highest precedence operator and the elements to be removed
-                int withHighestPrecedence = game.findHighestOperator(nodes);
+                //int withHighestPrecedence = game.findHighestOperator(nodes);
 
                 //add result nodes
-                game.getNodesToRemove(result_nodes, withHighestPrecedence, nodes);
+                //game.getNodesToRemove(result_nodes, withHighestPrecedence, nodes);
 
                 //compare the active nodes and the result nodes from above
                 //if(compare(active_nodes,result_nodes)){
@@ -98,9 +106,9 @@ public class Op_level1 extends Activity{
                 //}
                 //game.removeFromGame(nodes,nodes.get(withHighestPrecedence).getButton().getText().toString(),withHighestPrecedence);
 
-                for (Node i: result_nodes) {
-                    System.out.println(i.getButton().getText());
-                }
+//                for (Node i: result_nodes) {
+//                    System.out.println(i.getButton().getText());
+//                }
 
                 //game.mountAgain(nodes,container);
             }
