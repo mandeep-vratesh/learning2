@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class Op_level1 extends Activity{
-    String[] string_input = {"2", "+", "3"};
+    String[] string_input = {"1", "*", "2", "+", "3"};
     ArrayList<Node> nodes,active_nodes,result_nodes;
     private Button run;
     private Game game = new Game();
@@ -88,16 +88,15 @@ public class Op_level1 extends Activity{
                     }
                 }
 
-//                for (Node i: active_nodes) {
-//                    Log.d("===============>",i.getButton().getText().toString());
-//                }
-
                 //send this arraylist to find the highest precedence operator and the elements to be removed
                 int withHighestPrecedence = game.findHighestOperator(nodes);
-                Log.d("===============>",""+withHighestPrecedence);
-                //add result nodes
-                //game.getNodesToRemove(result_nodes, withHighestPrecedence, nodes);
 
+                //add result nodes
+                game.getNodesToRemove(result_nodes, withHighestPrecedence, nodes);
+
+                for (Node i: result_nodes) {
+                    Log.d("===============>",i.getButton().getText().toString());
+                }
                 //compare the active nodes and the result nodes from above
                 //if(compare(active_nodes,result_nodes)){
                     //remove the active nodes from game

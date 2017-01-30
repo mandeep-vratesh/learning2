@@ -31,6 +31,10 @@ public class Game {
         pre_remove_table.put("++",1);
         post_remove_table.put("++",1);
 
+        precedence_table.put("1",100);
+        pre_remove_table.put("1",0);
+        post_remove_table.put("1",0);
+
         precedence_table.put("2",100);
         pre_remove_table.put("2",0);
         post_remove_table.put("2",0);
@@ -48,7 +52,7 @@ public class Game {
     public int findHighestOperator(ArrayList<Node> input){
         String hasMaxPrecedence = input.get(0).getButton().getText().toString();
         int hasMaxPrecedenceIndex = 0,index=0;
-        
+
         for (Node i : input) {
             if(precedence_table.get(i.getButton().getText().toString()) < precedence_table.get(hasMaxPrecedence)){
                 hasMaxPrecedence = i.getButton().getText().toString();
@@ -90,9 +94,9 @@ public class Game {
      * @param index
      * @param from
      */
-    public void getNodesToRemove(ArrayList<Node> arrayList, int index, ArrayList<Node> from) {
-        for (int i=-pre_remove_table.get(from.get(index).getButton().getText().toString()); i<post_remove_table.get(from.get(index).getButton().getText().toString());i++){
-            arrayList.add(from.get(index+i));
+    public void getNodesToRemove(ArrayList<Node> result_nodes, int index, ArrayList<Node> from) {
+        for (int i=-pre_remove_table.get(from.get(index).getButton().getText().toString()); i<=post_remove_table.get(from.get(index).getButton().getText().toString());i++){
+            result_nodes.add(from.get(index+i));
         }
     }
 }
