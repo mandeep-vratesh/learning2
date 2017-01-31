@@ -43,7 +43,7 @@ public class Op_level1 extends Activity{
         //adding buttons to the layout
         for (String i : string_input) {
             //create a button
-            Button button = new Button(this);
+            Button button = new Button(getApplicationContext());
             button.setText(i);
             button.setGravity(Gravity.CENTER);
             //adding button to the node
@@ -111,6 +111,9 @@ public class Op_level1 extends Activity{
                     Button button = new Button(getApplicationContext());
                     button.setText(""+result);
                     button.setGravity(Gravity.CENTER);
+                    //adding button to the nodes
+                    nodes.add(pushIndex, new Node(button,false));
+
                     for (final Node i : nodes)
                         i.getButton().setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -124,9 +127,6 @@ public class Op_level1 extends Activity{
                                 }
                             }
                         });
-
-                    //adding button to the nodes
-                    nodes.add(pushIndex, new Node(button,false));
 
                     for (Node i: nodes) {
                         Log.d("===============>",i.getButton().getText().toString()+" "+nodes.indexOf(i));
