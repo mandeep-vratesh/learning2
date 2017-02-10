@@ -102,7 +102,7 @@ public class Op_level1 extends Activity{
                 if(game.compare(active_nodes,result_nodes)){
                     Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
                     //TODO:solve the expression
-                    int result = 0;
+                    int result = game.calculateResult(active_nodes);
                     for (Node i: active_nodes) {
                         pushIndex = nodes.indexOf(i);
                         nodes.remove(i);

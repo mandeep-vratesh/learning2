@@ -106,9 +106,9 @@ public class Game {
     }
 
     /**
-     *
-     * @param active_nodes
-     * @param result_nodes
+     * Compares the elements of two arrayLists
+     * @param active_nodes the nodes which are active on screen
+     * @param result_nodes the nodes which must be active
      * @return
      */
     public boolean compare(ArrayList<Node> active_nodes, ArrayList<Node> result_nodes) {
@@ -123,5 +123,44 @@ public class Game {
             return true;
         else
             return false;
+    }
+
+    /**
+     * Calculates the result of a string of expression given the string expression has maximum of 2 operators and 1 operand
+     * @param active_nodes the set of nodes containing the string expression
+     * @return the result of the expression
+     */
+    public int calculateResult(ArrayList<Node> active_nodes) {
+        int answer = 0, operator1 = 0, operator2 = 0;
+        String text, operand = "";
+        Boolean flag = true;
+
+        for (Node i : active_nodes) {
+            //get node button text
+            text = i.getButton().getText().toString();
+            //parse them
+            try{
+                if(flag){
+                    operator1 = Integer.parseInt(text);
+                    flag = false;
+                }else{
+                    operator2 = Integer.parseInt(text);
+                }
+            }catch (Exception e){
+                operand = text;
+            }
+
+            //solve them
+            switch (operand){
+                case "+" : answer = operator1 + operator2;break;
+                case "-" : answer = operator1 - operator2;break;
+                case "*" : answer = operator1 * operator2;break;
+                case "/" : answer = operator1 / operator2;break;
+                case "++": answer = operator1++;break;
+                case "--": answer = operator1--;break;
+                default: answer = 0;
+            }
+        }
+        return answer;
     }
 }
