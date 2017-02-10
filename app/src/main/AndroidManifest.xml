@@ -25,7 +25,7 @@
             android:screenOrientation="landscape">
 
         </activity>
-        <activity android:name=".Op_level1 "
+        <activity android:name=".Op_level1"
             android:screenOrientation="landscape">
 
         </activity>
