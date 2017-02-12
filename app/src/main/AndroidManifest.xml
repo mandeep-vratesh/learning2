@@ -29,6 +29,10 @@
             android:screenOrientation="landscape">
 
         </activity>
+        <activity android:name=".Op_level2"
+            android:screenOrientation="landscape">
+
+        </activity>
     </application>
 
 </manifest>
