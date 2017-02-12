@@ -2,22 +2,22 @@ package com.example.mandeep.learning;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 /**
+ * This custom level lets user enter his/her own problem statement based on operator precedence.
+ * The game should first validate the statement then use methods from Game.java to make it playable.
  * Created by NKS on 2/5/2017.
  */
 
-public class problem_enter extends AppCompatActivity {
+public class Op_custom_level extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.problem_entry);
+        setContentView(R.layout.op_custom_level);
         printtext();
     }
     private void printtext(){
