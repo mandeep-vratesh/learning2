@@ -25,10 +25,10 @@
         android:text="STAGE 1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/stage1"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#90CAF9 "
+        android:background="#90CAF9"
         android:paddingBottom="15dp"
         android:paddingTop="15dp" />
 
@@ -36,9 +36,9 @@
         android:text="STAGE 2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button11"
+        android:id="@+id/stage2"
         android:layout_marginBottom="10dp"
-        android:background="#64B5F6 "
+        android:background="#64B5F6"
         android:paddingBottom="15dp"
         android:paddingTop="15dp" />
 
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button16"
         android:layout_marginBottom="10dp"
-        android:background="#42A5F5 "
+        android:background="#42A5F5"
         android:paddingBottom="15dp"
         android:paddingTop="15dp" />
 
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button15"
         android:layout_marginBottom="10dp"
-        android:background="#2196F3 "
+        android:background="#2196F3"
         android:paddingBottom="15dp"
         android:paddingTop="15dp" />
 
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button14"
         android:layout_marginBottom="10dp"
-        android:background="#1E88E5 "
+        android:background="#1E88E5"
         android:paddingBottom="15dp"
         android:paddingTop="15dp" />
 
