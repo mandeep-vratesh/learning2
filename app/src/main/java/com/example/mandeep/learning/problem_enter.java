@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Created by NKS on 2/5/2017.
  */
 
-public class problem_enter extends AppCompatActivity {
+public class problem_enter extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +21,7 @@ public class problem_enter extends AppCompatActivity {
         printtext();
     }
     private void printtext(){
+
         final TextView expressionV = (TextView) findViewById(R.id.expression);
         Button buttonC = (Button) findViewById(R.id.buttonC);
         Button button1 = (Button) findViewById(R.id.button1);
@@ -41,6 +42,12 @@ public class problem_enter extends AppCompatActivity {
         Button buttonClose = (Button) findViewById(R.id.buttonClose);
         Button buttonNext = (Button) findViewById(R.id.buttonNext);
 
-
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s=expressionV.getText()+"1";
+                expressionV.setText(s);
+            }
+        });
     }
 }
