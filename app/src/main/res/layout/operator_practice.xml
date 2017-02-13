@@ -22,6 +22,17 @@
         android:layout_height="65dp" />
 
     <Button
+        android:text="CUSTOM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/custom"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp" />
+
+    <Button
         android:text="STAGE 1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

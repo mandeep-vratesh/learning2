@@ -25,7 +25,19 @@
             android:screenOrientation="landscape">
 
         </activity>
+        <activity android:name=".exp"
+            android:screenOrientation="landscape">
+            </activity>
+
         <activity android:name=".Op_level1"
+            android:screenOrientation="landscape">
+
+        </activity>
+        <activity android:name=".Op_level2"
+            android:screenOrientation="landscape">
+
+        </activity>
+        <activity android:name=".Op_custom_level"
             android:screenOrientation="landscape">
 
         </activity>

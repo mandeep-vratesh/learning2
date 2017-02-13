@@ -11,18 +11,36 @@ import android.widget.Button;
  */
 
 public class Operator_practice extends Activity {
-    private Button stage1;
+    private Button stage1, stage2, custom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.practice);
+        setContentView(R.layout.operator_practice);
 
+        custom = (Button) findViewById(R.id.custom);
         stage1 = (Button) findViewById(R.id.stage1);
+        stage2 = (Button) findViewById(R.id.stage2);
+
+        custom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_learn = new Intent(Operator_practice.this,Op_custom_level.class);
+                startActivity(go_to_learn);
+            }
+        });
 
         stage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent go_to_learn = new Intent(Operator_practice.this,Op_level1.class);
+                startActivity(go_to_learn);
+            }
+        });
+
+        stage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_learn = new Intent(Operator_practice.this,Op_level2.class);
                 startActivity(go_to_learn);
             }
         });

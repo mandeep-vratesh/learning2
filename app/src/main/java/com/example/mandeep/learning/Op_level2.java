@@ -18,8 +18,8 @@ import java.util.ArrayList;
  * Created by MANDEEP on 1/23/2017.
  */
 
-public class Op_level1 extends Activity{
-    String[] string_input = {"1", "*", "2", "+", "3"};
+public class Op_level2 extends Activity{
+    String[] string_input = {"1", "*", "2", "+", "3", "-", "8"};
     ArrayList<Node> nodes,active_nodes,result_nodes;
     private Button run;
     private Game game = new Game();
@@ -106,7 +106,6 @@ public class Op_level1 extends Activity{
                         nodes.remove(i);
                     }
 
-                    //creating a button with the result
                     Button button = new Button(getApplicationContext());
                     button.setText(""+result);
                     button.setGravity(Gravity.CENTER);
@@ -126,6 +125,10 @@ public class Op_level1 extends Activity{
                                 }
                             }
                         });
+
+                    for (Node i: nodes) {
+                        Log.d("===============>",i.getButton().getText().toString()+" "+nodes.indexOf(i));
+                    }
 
                     //refreshing the container
                     game.mountAgain(nodes,container);
