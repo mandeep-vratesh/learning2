@@ -18,7 +18,6 @@
 
         <TextView
             android:layout_width="377dp"
-            android:text="Practice"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:height="50dp"
             android:textSize="40sp"
