@@ -112,7 +112,7 @@ public class Op_custom_level extends Activity{
                 //compare the active nodes and the result nodes from above
                 if(game.compare(active_nodes,result_nodes)){
                     Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
-                    //TODO:solve the expression
+
                     int result = game.calculateResult(active_nodes);
                     for (Node i: active_nodes) {
                         pushIndex = nodes.indexOf(i);

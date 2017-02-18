@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This custom level lets user enter his/her own problem statement based on operator precedence.
@@ -52,16 +53,21 @@ public class Op_custom_create extends Activity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle b=new Bundle();
-                //creating a new string with the size of the string array being passed to avoid problems
-                String[] input = new String[index];
-                for(int i = 0; i<=index-1; i++){
-                    input[i] = userInput[i];
+                if(index == 0){
+                    Toast.makeText(getApplicationContext(), "Add something to the expression.", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Bundle b = new Bundle();
+                    //creating a new string with the size of the string array being passed to avoid problems
+                    String[] input = new String[index];
+                    for (int i = 0; i <= index - 1; i++) {
+                        input[i] = userInput[i];
+                    }
+                    b.putStringArray("input", input);
+                    Intent go_to_learn = new Intent(Op_custom_create.this, Op_custom_level.class);
+                    go_to_learn.putExtras(b);
+                    startActivity(go_to_learn);
                 }
-                b.putStringArray("input", input);
-                Intent go_to_learn = new Intent(Op_custom_create.this,Op_custom_level.class);
-                go_to_learn.putExtras(b);
-                startActivity(go_to_learn);
             }
         });
 
