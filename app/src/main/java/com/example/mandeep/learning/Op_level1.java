@@ -5,11 +5,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Vibrator;
+import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -99,7 +102,29 @@ public class Op_level1 extends Activity{
                 //compare the active nodes and the result nodes from above
                 if(game.compare(active_nodes,result_nodes)){
                     Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
-                    //TODO:solve the expression
+                    //get all nodes and add to the log linearlayout
+                        //create linear layout object
+                        LinearLayout log_container = (LinearLayout) findViewById(R.id.log);
+                        //create text view
+                        TextView log = new TextView(getApplicationContext());
+                        String log_text = "";
+
+                        for (Node i: nodes) {
+                            if(i.isActive()){
+                                //make the button text italic
+                                log_text += "<b><i>"+i.getButton().getText().toString()+"</i></b>";
+                            }else{
+                                //keep it simple
+                                log_text += i.getButton().getText().toString();
+                            }
+                        }
+                        //set text to textview
+                        log.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+                        log.setText(Html.fromHtml(log_text));
+                        //add this to container
+                        log_container.addView(log);
+
+
                     int result = game.calculateResult(active_nodes);
                     for (Node i: active_nodes) {
                         pushIndex = nodes.indexOf(i);

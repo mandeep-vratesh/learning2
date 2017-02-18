@@ -192,4 +192,8 @@ public class Game {
         }
         return answer;
     }
+
+    public void add_to_log(){
+
+    }
 }
