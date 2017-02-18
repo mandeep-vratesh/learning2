@@ -24,7 +24,7 @@ public class Operator_practice extends Activity {
         custom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_learn = new Intent(Operator_practice.this,Op_custom_level.class);
+                Intent go_to_learn = new Intent(Operator_practice.this,Op_custom_create.class);
                 startActivity(go_to_learn);
             }
         });

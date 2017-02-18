@@ -129,6 +129,11 @@ public class Op_level1 extends Activity{
 
                     //refreshing the container
                     game.mountAgain(nodes,container);
+
+                    //if the container has only one node left, show you won and ask the learner to move to the next level
+                    if(nodes.size() == 1){
+                        Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
                     Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(200);

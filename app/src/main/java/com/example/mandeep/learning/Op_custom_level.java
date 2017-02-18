@@ -3,13 +3,21 @@ package com.example.mandeep.learning;
 
 import android.app.Activity;
 import java.lang.String;
+import java.util.ArrayList;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This custom level lets user enter his/her own problem statement based on operator precedence.
@@ -18,164 +26,132 @@ import android.widget.TextView;
  */
 
 
-public class Op_custom_level extends Activity {
+public class Op_custom_level extends Activity{
+
+    String[] string_input;
+
+    ArrayList<Node> nodes,active_nodes,result_nodes;
+    private Button run;
+    private Game game = new Game();
+    int pushIndex;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setContentView(R.layout.op_level);
+        //reading intent
+        Bundle bundle = getIntent().getExtras();
+        string_input = bundle.getStringArray("input");
+
+        //creating layout
+        final LinearLayout container = (LinearLayout) findViewById(R.id.container);
+        //arraylist of node
+        nodes = new ArrayList<>();
+        active_nodes = new ArrayList<>();
+        result_nodes = new ArrayList<>();
+        int node_index=0;
+
+        //adding buttons to the layout
+        for (String i : string_input) {
+            //create a button
+            Button button = new Button(getApplicationContext());
+            button.setText(i);
+            button.setGravity(Gravity.CENTER);
+            //adding button to the node
+            nodes.add(new Node(button,false));
+            //setting on click listener
+            final int finalNode_index = node_index;
+            nodes.get(node_index).getButton().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!nodes.get(finalNode_index).isActive()) {
+                        nodes.get(finalNode_index).setActive(true);
+                        nodes.get(finalNode_index).getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                    }
+                    else {
+                        nodes.get(finalNode_index).setActive(false);
+                        nodes.get(finalNode_index).getButton().getBackground().clearColorFilter();
+                    }
+                }
+            });
+
+            //adding button to layout
+            container.addView(nodes.get(node_index).getButton());
+
+            node_index++;
+        }
 
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.op_custom_level);
-        printtext();
-    }
-    private void printtext(){
 
-        final TextView expressionV = (TextView) findViewById(R.id.expression);
-        Button buttonC = (Button) findViewById(R.id.buttonC);
-        Button button1 = (Button) findViewById(R.id.button1);
-        Button button2 = (Button) findViewById(R.id.button2);
-        Button button3 = (Button) findViewById(R.id.button3);
-        Button button4 = (Button) findViewById(R.id.button4);
-        Button button5 = (Button) findViewById(R.id.button5);
-        Button button6 = (Button) findViewById(R.id.button6);
-        Button button7 = (Button) findViewById(R.id.button7);
-        Button button8 = (Button) findViewById(R.id.button8);
-        Button button9 = (Button) findViewById(R.id.button9);
-        Button button0 = (Button) findViewById(R.id.button0);
-        Button buttonAdd = (Button) findViewById(R.id.buttonAdd);
-        Button buttonSub = (Button) findViewById(R.id.buttonSub);
-        Button buttonMul = (Button) findViewById(R.id.buttonMul);
-        Button buttonDiv = (Button) findViewById(R.id.buttonDiv);
-        Button buttonOpen = (Button) findViewById(R.id.buttonOpen);
-        Button buttonClose = (Button) findViewById(R.id.buttonClose);
-        final Button buttonNext = (Button) findViewById(R.id.buttonNext);
+        //CODE RELATED TO THE RUN BUTTON
 
-        buttonNext.setOnClickListener(new View.OnClickListener() {
+        //create button object
+        run = (Button) findViewById(R.id.run);
+        //attach on click listener
+        run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_learn = new Intent(Op_custom_level.this,exp.class);
-                go_to_learn.putExtra("key",expressionV.getText());
-                startActivity(go_to_learn);
-            }
-        });
 
-        buttonC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StringBuilder builder = new StringBuilder(expressionV.getText());
-                builder.deleteCharAt(expressionV.getText().length() - 1);
-                expressionV.setText(builder.toString());
-            }
-        });
+                //clear the active nodes and result nodes
+                active_nodes.clear();
+                result_nodes.clear();
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"1";
-                expressionV.setText(s);
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"2";
-                expressionV.setText(s);
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"3";
-                expressionV.setText(s);
-            }
-        });
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"4";
-                expressionV.setText(s);
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"5";
-                expressionV.setText(s);
-            }
-        });
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"6";
-                expressionV.setText(s);
-            }
-        });
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"7";
-                expressionV.setText(s);
-            }
-        });
-        button8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"8";
-                expressionV.setText(s);
-            }
-        });
-        button0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"0";
-                expressionV.setText(s);
-            }
-        });
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"+";
-                expressionV.setText(s);
-            }
-        });
-        buttonSub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"-";
-                expressionV.setText(s);
-            }
-        });
-        buttonDiv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"/";
-                expressionV.setText(s);
-            }
-        });
-        buttonMul.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"*";
-                expressionV.setText(s);
-            }
-        });
-        buttonOpen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"(";
-                expressionV.setText(s);
-            }
-        });
-        buttonClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+")";
-                expressionV.setText(s);
-            }
-        });
-        button9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s=expressionV.getText()+"9";
-                expressionV.setText(s);
+                //find the active buttons and put them in an arraylist
+                for (Node i: nodes) {
+                    if(i.isActive()){
+                        active_nodes.add(i);
+                    }
+                }
+
+                //send this arraylist to find the highest precedence operator and the elements to be removed
+                int withHighestPrecedence = game.findHighestOperator(nodes);
+
+                //add result nodes
+                game.getNodesToRemove(result_nodes, withHighestPrecedence, nodes);
+
+                //compare the active nodes and the result nodes from above
+                if(game.compare(active_nodes,result_nodes)){
+                    Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
+                    //TODO:solve the expression
+                    int result = game.calculateResult(active_nodes);
+                    for (Node i: active_nodes) {
+                        pushIndex = nodes.indexOf(i);
+                        nodes.remove(i);
+                    }
+
+                    //creating a button with the result
+                    Button button = new Button(getApplicationContext());
+                    button.setText(""+result);
+                    button.setGravity(Gravity.CENTER);
+                    //adding button to the nodes
+                    nodes.add(pushIndex, new Node(button,false));
+
+                    for (final Node i : nodes)
+                        i.getButton().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (!i.isActive()) {
+                                    i.setActive(true);
+                                    i.getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                                } else {
+                                    i.setActive(false);
+                                    i.getButton().getBackground().clearColorFilter();
+                                }
+                            }
+                        });
+
+                    //refreshing the container
+                    game.mountAgain(nodes,container);
+
+                    //if the container has only one node left, show you won and ask the learner to move to the next level
+                    if(nodes.size() == 1){
+                        Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    v.vibrate(200);
+                    Toast.makeText(getApplicationContext(), "Check for the highest operator", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
