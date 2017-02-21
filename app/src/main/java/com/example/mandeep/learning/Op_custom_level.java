@@ -16,6 +16,8 @@ import android.text.Html;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -133,6 +135,9 @@ public class Op_custom_level extends Activity{
                         //set text to textview
                         log.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
                         log.setText(Html.fromHtml(log_text));
+                        //add animation
+                        Animation animate= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_up);
+                        log.startAnimation(animate);
                         //add this to container
                         log_container.addView(log);
 

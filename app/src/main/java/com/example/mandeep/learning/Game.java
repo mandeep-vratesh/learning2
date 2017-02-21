@@ -193,7 +193,7 @@ public class Game {
         return answer;
     }
 
-    public void add_to_log(){
-
+    public static boolean isValidExpression(String[] userInput) {
+        return true;
     }
 }

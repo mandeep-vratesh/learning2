@@ -56,7 +56,7 @@ public class Op_custom_create extends Activity {
                 if(index == 0){
                     Toast.makeText(getApplicationContext(), "Add something to the expression.", Toast.LENGTH_SHORT).show();
 
-                }else {
+                }else if(Game.isValidExpression(userInput)){
                     Bundle b = new Bundle();
                     //creating a new string with the size of the string array being passed to avoid problems
                     String[] input = new String[index];
@@ -67,6 +67,8 @@ public class Op_custom_create extends Activity {
                     Intent go_to_learn = new Intent(Op_custom_create.this, Op_custom_level.class);
                     go_to_learn.putExtras(b);
                     startActivity(go_to_learn);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Expression not valid.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
