@@ -1,19 +1,27 @@
 package com.example.mandeep.learning;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Vibrator;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +38,17 @@ public class Op_level1 extends Activity{
     private Game game = new Game();
     int pushIndex;
 
+    //======================================
+    PopupWindow popupWindow;
+    LayoutInflater layoutInflater;
+    LinearLayout linearLayout;
+    //======================================
     @Override
     protected void onStart() {
         super.onStart();
         setContentView(R.layout.op_level);
 
+        linearLayout = (LinearLayout) findViewById(R.id.show_popups_here);
         //creating layout
         final LinearLayout container = (LinearLayout) findViewById(R.id.container);
         //arraylist of node
@@ -81,9 +95,17 @@ public class Op_level1 extends Activity{
         run = (Button) findViewById(R.id.run);
         //attach on click listener
         run.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onClick(View view) {
 
+                //======================================
+                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                ViewGroup popupContent = (ViewGroup) layoutInflater.inflate(R.layout.popup,null);
+
+                popupWindow = new PopupWindow(popupContent,400,400,false);//size of the window
+                popupWindow.showAtLocation(linearLayout,Gravity.NO_GRAVITY,400,200);//location of the window
+                //======================================
                 //clear the active nodes and result nodes
                 active_nodes.clear();
                 result_nodes.clear();
@@ -121,8 +143,9 @@ public class Op_level1 extends Activity{
                             }
                         }
                         //set text to textview
-                        log.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+                        log.setTextSize(TypedValue.COMPLEX_UNIT_SP,30-nodes.size());
                         log.setText(Html.fromHtml(log_text));
+                        log.setGravity(Gravity.CENTER_HORIZONTAL);
                         //add animation
                         Animation animate= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_up);
                         log.startAnimation(animate);

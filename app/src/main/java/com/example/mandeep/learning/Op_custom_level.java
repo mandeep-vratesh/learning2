@@ -13,6 +13,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -95,6 +96,7 @@ public class Op_custom_level extends Activity{
         run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //clear the active nodes and result nodes
                 active_nodes.clear();
                 result_nodes.clear();
@@ -117,29 +119,30 @@ public class Op_custom_level extends Activity{
                     Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
 
                     //get all nodes and add to the log linearlayout
-                        //create linear layout object
-                        LinearLayout log_container = (LinearLayout) findViewById(R.id.log);
-                        //create text view
-                        TextView log = new TextView(getApplicationContext());
-                        String log_text = "";
+                    //create linear layout object
+                    LinearLayout log_container = (LinearLayout) findViewById(R.id.log);
+                    //create text view
+                    TextView log = new TextView(getApplicationContext());
+                    String log_text = "";
 
-                        for (Node i: nodes) {
-                            if(i.isActive()){
-                                //make the button text italic
-                                log_text += "<b><i>"+i.getButton().getText().toString()+"</i></b>";
-                            }else{
-                                //keep it simple
-                                log_text += i.getButton().getText().toString();
-                            }
+                    for (Node i: nodes) {
+                        if(i.isActive()){
+                            //make the button text italic
+                            log_text += "<b><i>"+i.getButton().getText().toString()+"</i></b>";
+                        }else{
+                            //keep it simple
+                            log_text += i.getButton().getText().toString();
                         }
-                        //set text to textview
-                        log.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
-                        log.setText(Html.fromHtml(log_text));
-                        //add animation
-                        Animation animate= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_up);
-                        log.startAnimation(animate);
-                        //add this to container
-                        log_container.addView(log);
+                    }
+                    //set text to textview
+                    log.setTextSize(TypedValue.COMPLEX_UNIT_SP,30-nodes.size());
+                    log.setText(Html.fromHtml(log_text));
+                    log.setGravity(Gravity.CENTER_HORIZONTAL);
+                    //add animation
+                    Animation animate= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_up);
+                    log.startAnimation(animate);
+                    //add this to container
+                    log_container.addView(log);
 
                     int result = game.calculateResult(active_nodes);
                     for (Node i: active_nodes) {
@@ -147,7 +150,6 @@ public class Op_custom_level extends Activity{
                         nodes.remove(i);
                     }
 
-                    //creating a button with the result
                     Button button = new Button(getApplicationContext());
                     button.setText(""+result);
                     button.setGravity(Gravity.CENTER);
@@ -168,6 +170,10 @@ public class Op_custom_level extends Activity{
                             }
                         });
 
+                    for (Node i: nodes) {
+                        Log.d("===============>",i.getButton().getText().toString()+" "+nodes.indexOf(i));
+                    }
+
                     //refreshing the container
                     game.mountAgain(nodes,container);
 
@@ -175,6 +181,7 @@ public class Op_custom_level extends Activity{
                     if(nodes.size() == 1){
                         Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT).show();
                     }
+
                 }else{
                     Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(200);

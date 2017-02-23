@@ -122,8 +122,9 @@ public class Op_level2 extends Activity{
                             }
                         }
                         //set text to textview
-                        log.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+                        log.setTextSize(TypedValue.COMPLEX_UNIT_SP,30-nodes.size());
                         log.setText(Html.fromHtml(log_text));
+                        log.setGravity(Gravity.CENTER_HORIZONTAL);
                         //add animation
                         Animation animate= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_up);
                         log.startAnimation(animate);

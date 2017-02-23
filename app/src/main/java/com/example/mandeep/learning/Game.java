@@ -77,6 +77,23 @@ public class Game {
         post_remove_table.put("9",0);
     }
 
+
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        // only got here if we didn't return false
+        return true;
+    }
     /**
      * The method finds out the operator with max precedence in the given array of operators.
      * @param input the string array of operators.
@@ -86,7 +103,19 @@ public class Game {
         String hasMaxPrecedence = input.get(0).getButton().getText().toString();
         int hasMaxPrecedenceIndex = 0,index=0;
 
+        for(int i=0;i<input.size();i++){
+            if(!isInteger(input.get(i).getButton().getText().toString())){
+                hasMaxPrecedence = input.get(i).getButton().getText().toString();
+                hasMaxPrecedenceIndex = i;
+                break;
+            }
+        }
+
         for (Node i : input) {
+            if(isInteger(i.getButton().getText().toString())){
+                index++;
+                continue;
+            }
             if(precedence_table.get(i.getButton().getText().toString()) < precedence_table.get(hasMaxPrecedence)){
                 hasMaxPrecedence = i.getButton().getText().toString();
                 hasMaxPrecedenceIndex = index;
