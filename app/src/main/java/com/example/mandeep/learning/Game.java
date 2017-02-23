@@ -35,46 +35,6 @@ public class Game {
         precedence_table.put("-",3);
         pre_remove_table.put("-",1);
         post_remove_table.put("-",1);
-
-        precedence_table.put("0",100);
-        pre_remove_table.put("0",0);
-        post_remove_table.put("0",0);
-
-        precedence_table.put("1",100);
-        pre_remove_table.put("1",0);
-        post_remove_table.put("1",0);
-
-        precedence_table.put("2",100);
-        pre_remove_table.put("2",0);
-        post_remove_table.put("2",0);
-
-        precedence_table.put("3",100);
-        pre_remove_table.put("3",0);
-        post_remove_table.put("3",0);
-
-        precedence_table.put("4",100);
-        pre_remove_table.put("4",0);
-        post_remove_table.put("4",0);
-
-        precedence_table.put("5",100);
-        pre_remove_table.put("5",0);
-        post_remove_table.put("5",0);
-
-        precedence_table.put("6",100);
-        pre_remove_table.put("6",0);
-        post_remove_table.put("6",0);
-
-        precedence_table.put("7",100);
-        pre_remove_table.put("7",0);
-        post_remove_table.put("7",0);
-
-        precedence_table.put("8",100);
-        pre_remove_table.put("8",0);
-        post_remove_table.put("8",0);
-
-        precedence_table.put("9",100);
-        pre_remove_table.put("9",0);
-        post_remove_table.put("9",0);
     }
 
 
