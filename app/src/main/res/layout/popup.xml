@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright">
+    android:background="@android:color/holo_orange_dark">
 
-    <Button
-        android:text="Ohhhh"
+    <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/button10"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/ratingBar"
+        android:numStars="3" />
 
     <Button
-        android:text="Yeahhh"
+        android:text="Go to next stage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button11"
-        android:layout_alignBaseline="@+id/button10"
-        android:layout_alignBottom="@+id/button10"
-        android:layout_toRightOf="@+id/button10"
-        android:layout_toEndOf="@+id/button10"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp" />
-</RelativeLayout>
+        android:id="@+id/next"
+        android:background="@android:color/holo_green_dark"
+        android:padding="5dp"
+        android:layout_marginLeft="30dp" />
+</LinearLayout>

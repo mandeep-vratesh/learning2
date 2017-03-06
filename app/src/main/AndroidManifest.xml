@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Test">
+
+        </activity>
+
         <activity android:name=".Operator_practice"
             android:screenOrientation="landscape">
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -25,6 +26,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 import java.util.ArrayList;
 
 /**
@@ -34,7 +38,7 @@ import java.util.ArrayList;
 public class Op_level1 extends Activity{
     String[] string_input = {"1", "*", "2", "+", "3"};
     ArrayList<Node> nodes,active_nodes,result_nodes;
-    private Button run;
+    private Button run, next;
     private Game game = new Game();
     int pushIndex;
 
@@ -67,25 +71,47 @@ public class Op_level1 extends Activity{
             nodes.add(new Node(button,false));
             //setting on click listener
             final int finalNode_index = node_index;
+
             nodes.get(node_index).getButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(!nodes.get(finalNode_index).isActive()) {
                         nodes.get(finalNode_index).setActive(true);
                         nodes.get(finalNode_index).getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                        YoYo.with(Techniques.RubberBand)
+                                .duration(1000)
+                                .playOn(view);
                     }
                     else {
                         nodes.get(finalNode_index).setActive(false);
                         nodes.get(finalNode_index).getButton().getBackground().clearColorFilter();
+                        YoYo.with(Techniques.RubberBand)
+                                .duration(1000)
+                                .playOn(view);
                     }
                 }
             });
 
             //adding button to layout
             container.addView(nodes.get(node_index).getButton());
-
+            //add animation
+            YoYo.with(Techniques.SlideInUp)
+                    .duration(1000)
+                    .playOn(button);
             node_index++;
         }
+
+        //CODE RELATED TO NEXT STAGE BUTTON
+        next = (Button) findViewById(R.id.next);
+
+//        next.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent go_to_next_stage = new Intent(Op_level1.this,Op_level2.class);
+//                startActivity(go_to_next_stage);
+//            }
+//        });
+
 
 
 
@@ -103,7 +129,7 @@ public class Op_level1 extends Activity{
                 layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 ViewGroup popupContent = (ViewGroup) layoutInflater.inflate(R.layout.popup,null);
 
-                popupWindow = new PopupWindow(popupContent,400,400,false);//size of the window
+                popupWindow = new PopupWindow(popupContent,350,300,false);//size of the window
                 popupWindow.showAtLocation(linearLayout,Gravity.NO_GRAVITY,400,200);//location of the window
                 //======================================
                 //clear the active nodes and result nodes
@@ -173,9 +199,15 @@ public class Op_level1 extends Activity{
                                 if (!i.isActive()) {
                                     i.setActive(true);
                                     i.getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                                    YoYo.with(Techniques.RubberBand)
+                                            .duration(1000)
+                                            .playOn(view);
                                 } else {
                                     i.setActive(false);
                                     i.getButton().getBackground().clearColorFilter();
+                                    YoYo.with(Techniques.RubberBand)
+                                            .duration(1000)
+                                            .playOn(view);
                                 }
                             }
                         });
