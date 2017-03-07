@@ -6,12 +6,39 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 /**
  * Created by MANDEEP on 1/23/2017.
  */
 
 public class Operator_practice extends Activity {
     private Button stage1, stage2, custom;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        YoYo.with(Techniques.BounceInUp)
+                .duration(800)
+                .playOn(findViewById(R.id.custom));
+        YoYo.with(Techniques.BounceInUp)
+                .duration(750)
+                .playOn(findViewById(R.id.stage1));
+        YoYo.with(Techniques.BounceInUp)
+                .duration(700)
+                .playOn(findViewById(R.id.stage2));
+        YoYo.with(Techniques.BounceInUp)
+                .duration(600)
+                .playOn(findViewById(R.id.stage3));
+        YoYo.with(Techniques.BounceInUp)
+                .duration(550)
+                .playOn(findViewById(R.id.stage4));
+        YoYo.with(Techniques.BounceInUp)
+                .duration(500)
+                .playOn(findViewById(R.id.stage5));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

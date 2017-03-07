@@ -8,79 +8,99 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Practice"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:height="50dp"
         android:textSize="40sp"
-        android:translationX="0dp"
+        android:gravity="center"
         android:textColor="#000000"
-        android:outlineProvider="background"
         android:background="#FB8C00"
-        android:drawablePadding="0dp"
         android:paddingLeft="20dp"
-        android:paddingTop="5dp"
-        android:layout_height="65dp" />
-
-    <Button
-        android:text="CUSTOM"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp" />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#ffffff"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:textAlignment="center">
+            <Button
+                android:text="CUSTOM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/custom"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="#90CAA8"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp" />
 
-    <Button
-        android:text="STAGE 1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/stage1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#90CAF9"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp" />
+            <Button
+                android:text="STAGE 1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stage1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#90CAF9"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp" />
 
-    <Button
-        android:text="STAGE 2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/stage2"
-        android:layout_marginBottom="10dp"
-        android:background="#64B5F6"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp" />
+            <Button
+                android:text="STAGE 2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stage2"
+                android:layout_marginBottom="10dp"
+                android:background="#64B5F6"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"/>
 
-    <Button
-        android:text="STAGE 3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button16"
-        android:layout_marginBottom="10dp"
-        android:background="#42A5F5"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp" />
+            <Button
+                android:text="STAGE 3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stage3"
+                android:layout_marginBottom="10dp"
+                android:background="#42A5F5"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"/>
 
-    <Button
-        android:text="STAGE 4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button15"
-        android:layout_marginBottom="10dp"
-        android:background="#2196F3"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp" />
+            <Button
+                android:text="STAGE 4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stage4"
+                android:layout_marginBottom="10dp"
+                android:background="#2196F3"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"/>
 
-    <Button
-        android:text="STAGE 5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button14"
-        android:layout_marginBottom="10dp"
-        android:background="#1E88E5"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp" />
+            <Button
+                android:text="STAGE 5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stage5"
+                android:layout_marginBottom="10dp"
+                android:background="#1E88E5"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"/>
 
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

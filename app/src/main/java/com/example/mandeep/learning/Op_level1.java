@@ -95,7 +95,7 @@ public class Op_level1 extends Activity{
             //adding button to layout
             container.addView(nodes.get(node_index).getButton());
             //add animation
-            YoYo.with(Techniques.SlideInUp)
+            YoYo.with(Techniques.StandUp)
                     .duration(1000)
                     .playOn(button);
             node_index++;
