@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="#fffff0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/elearning1"
+        android:text="e"
+        android:textSize="80dp"
+        android:background="#fffff0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning2"
+        android:text="-"
+        android:textSize="80dp"
+        android:background="#fffff0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning3"
+        android:background="#fffff0"
+        android:text="L"
+        android:textSize="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning4"
+        android:text="e"
+        android:textSize="80dp"
+        android:background="#fffff0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning5"
+        android:text="a"
+        android:textSize="80dp"
+        android:background="#fffff0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="r"
+        android:textSize="80dp"
+        android:id="@+id/elearning6"
+        android:background="#fffff0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning7"
+        android:text="n"
+        android:textSize="80dp"
+        android:layout_width="wrap_content"
+        android:background="#fffff0"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning8"
+        android:text="i"
+        android:textSize="80dp"
+        android:layout_width="wrap_content"
+        android:background="#fffff0"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning9"
+        android:text="n"
+        android:textSize="80dp"
+        android:layout_width="wrap_content"
+        android:background="#fffff0"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/elearning10"
+        android:text="g"
+        android:textSize="80dp"
+        android:layout_width="wrap_content"
+        android:background="#fffff0"
+        android:layout_height="wrap_content" />
+</LinearLayout>
