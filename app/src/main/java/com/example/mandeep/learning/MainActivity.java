@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 public class MainActivity extends Activity {
 
     private Button operator_learn, operator_practice;
@@ -34,5 +37,19 @@ public class MainActivity extends Activity {
                 startActivity(go_to_practice);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        YoYo.with(Techniques.BounceInDown)
+                .duration(500)
+                .playOn(findViewById(R.id.operator_title));
+        YoYo.with(Techniques.BounceInDown)
+                .duration(750)
+                .playOn(findViewById(R.id.operator_practice));
+        YoYo.with(Techniques.BounceInDown)
+                .duration(850)
+                .playOn(findViewById(R.id.operator_learn));
     }
 }

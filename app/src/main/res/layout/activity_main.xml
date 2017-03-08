@@ -43,6 +43,7 @@
             android:paddingTop="5dp"
             android:layout_height="65dp" />
         <TextView
+            android:id="@+id/operator_title"
             android:layout_width="match_parent"
             android:text="Operator Precedence"
             android:textAppearance="@style/TextAppearance.AppCompat"

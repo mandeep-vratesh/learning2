@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -38,21 +39,15 @@ import java.util.ArrayList;
 public class Op_level1 extends Activity{
     String[] string_input = {"1", "*", "2", "+", "3"};
     ArrayList<Node> nodes,active_nodes,result_nodes;
-    private Button run, next;
+    private Button run, next, previous, again;
     private Game game = new Game();
     int pushIndex;
 
-    //======================================
-    PopupWindow popupWindow;
-    LayoutInflater layoutInflater;
-    LinearLayout linearLayout;
-    //======================================
     @Override
     protected void onStart() {
         super.onStart();
         setContentView(R.layout.op_level);
 
-        linearLayout = (LinearLayout) findViewById(R.id.show_popups_here);
         //creating layout
         final LinearLayout container = (LinearLayout) findViewById(R.id.container);
         //arraylist of node
@@ -67,6 +62,7 @@ public class Op_level1 extends Activity{
             Button button = new Button(getApplicationContext());
             button.setText(i);
             button.setGravity(Gravity.CENTER);
+
             //adding button to the node
             nodes.add(new Node(button,false));
             //setting on click listener
@@ -96,21 +92,31 @@ public class Op_level1 extends Activity{
             container.addView(nodes.get(node_index).getButton());
             //add animation
             YoYo.with(Techniques.StandUp)
-                    .duration(1000)
+                    .duration(1500)
                     .playOn(button);
             node_index++;
         }
 
-        //CODE RELATED TO NEXT STAGE BUTTON
+        //CODE RELATED TO STAGE BUTTONS
         next = (Button) findViewById(R.id.next);
+        previous = (Button) findViewById(R.id.previous);
+        again = (Button) findViewById(R.id.again);
 
-//        next.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent go_to_next_stage = new Intent(Op_level1.this,Op_level2.class);
-//                startActivity(go_to_next_stage);
-//            }
-//        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_next_stage = new Intent(Op_level1.this,Op_level2.class);
+                startActivity(go_to_next_stage);
+            }
+        });
+
+        again.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_next_stage = new Intent(Op_level1.this,Op_level1.class);
+                startActivity(go_to_next_stage);
+            }
+        });
 
 
 
@@ -124,14 +130,6 @@ public class Op_level1 extends Activity{
             @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onClick(View view) {
-
-                //======================================
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup popupContent = (ViewGroup) layoutInflater.inflate(R.layout.popup,null);
-
-                popupWindow = new PopupWindow(popupContent,350,300,false);//size of the window
-                popupWindow.showAtLocation(linearLayout,Gravity.NO_GRAVITY,400,200);//location of the window
-                //======================================
                 //clear the active nodes and result nodes
                 active_nodes.clear();
                 result_nodes.clear();
@@ -215,9 +213,24 @@ public class Op_level1 extends Activity{
                     //refreshing the container
                     game.mountAgain(nodes,container);
 
-                    //if the container has only one node left, show you won and ask the learner to move to the next level
+                    //TODO: if the container has only one node left, show you won and ask the learner to move to the next level
                     if(nodes.size() == 1){
                         Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT).show();
+                        //disable run button
+                        run.setVisibility(View.INVISIBLE);
+                        //bring in all the buttons
+                        next.setVisibility(View.VISIBLE);
+                        previous.setVisibility(View.VISIBLE);
+                        again.setVisibility(View.VISIBLE);
+                        YoYo.with(Techniques.BounceInLeft)
+                                .duration(750)
+                                .playOn(next);
+                        YoYo.with(Techniques.BounceInRight)
+                                .duration(750)
+                                .playOn(previous);
+                        YoYo.with(Techniques.BounceInDown)
+                                .duration(1000)
+                                .playOn(again);
                     }
                 }else{
                     Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
