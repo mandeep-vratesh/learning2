@@ -8,8 +8,9 @@
     android:id="@+id/show_popups_here">
 
     <RelativeLayout
+        android:id="@+id/options"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="1dp">
         <Button
             android:text="NEXT"
             android:id="@+id/next"

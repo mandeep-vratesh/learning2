@@ -13,6 +13,7 @@ import android.os.Vibrator;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.Layout;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,6 +50,7 @@ public class Op_level1 extends Activity{
         setContentView(R.layout.op_level);
 
         //creating layout
+        final RelativeLayout options = (RelativeLayout) findViewById(R.id.options);
         final LinearLayout container = (LinearLayout) findViewById(R.id.container);
         //arraylist of node
         nodes = new ArrayList<>();
@@ -218,6 +220,8 @@ public class Op_level1 extends Activity{
                         Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT).show();
                         //disable run button
                         run.setVisibility(View.INVISIBLE);
+                        //reset size of layout
+                        options.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
                         //bring in all the buttons
                         next.setVisibility(View.VISIBLE);
                         previous.setVisibility(View.VISIBLE);
