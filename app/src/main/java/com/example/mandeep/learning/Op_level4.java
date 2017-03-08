@@ -31,8 +31,9 @@ import java.util.ArrayList;
  * Created by MANDEEP on 1/23/2017.
  */
 
-public class Op_level2 extends Activity{
-    String[] string_input = {"1", "*", "2", "+", "3", "-", "8"};
+public class Op_level4 extends Activity{
+//    String[] string_input = {"4", "*", "(", "6", "+", "(", "8", "+", "4",")",")"};
+    String[] string_input = {"4", "*", "(", "6", "+", "(", "8", "+", "4",")",")"};
     ArrayList<Node> nodes,active_nodes,result_nodes;
     private Button run, next, previous, again;
     private Game game = new Game();
@@ -101,7 +102,7 @@ public class Op_level2 extends Activity{
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_next_stage = new Intent(Op_level2.this,Op_level1.class);
+                Intent go_to_next_stage = new Intent(Op_level4.this,Op_level3.class);
                 startActivity(go_to_next_stage);
             }
         });
@@ -109,7 +110,7 @@ public class Op_level2 extends Activity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_next_stage = new Intent(Op_level2.this,Op_level3.class);
+                Intent go_to_next_stage = new Intent(Op_level4.this,Op_level5.class);
                 startActivity(go_to_next_stage);
             }
         });
@@ -117,7 +118,7 @@ public class Op_level2 extends Activity{
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_next_stage = new Intent(Op_level2.this,Op_level2.class);
+                Intent go_to_next_stage = new Intent(Op_level4.this,Op_level4.class);
                 startActivity(go_to_next_stage);
             }
         });
@@ -243,11 +244,10 @@ public class Op_level2 extends Activity{
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent go_to_practice = new Intent(Op_level2.this,Operator_practice.class);
+        Intent go_to_practice = new Intent(Op_level4.this,Operator_practice.class);
         startActivity(go_to_practice);
     }
 }

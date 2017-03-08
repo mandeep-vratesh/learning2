@@ -38,9 +38,10 @@ import java.util.ArrayList;
  */
 
 public class Op_level1 extends Activity{
-    String[] string_input = {"1", "*", "2", "+", "3"};
+
+    String[] string_input = {"1", "*", "2"};
     ArrayList<Node> nodes,active_nodes,result_nodes;
-    private Button run, next, previous, again;
+    private Button run, next, again;
     private Game game = new Game();
     int pushIndex;
 
@@ -101,7 +102,6 @@ public class Op_level1 extends Activity{
 
         //CODE RELATED TO STAGE BUTTONS
         next = (Button) findViewById(R.id.next);
-        previous = (Button) findViewById(R.id.previous);
         again = (Button) findViewById(R.id.again);
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +119,6 @@ public class Op_level1 extends Activity{
                 startActivity(go_to_next_stage);
             }
         });
-
-
 
 
         //CODE RELATED TO THE RUN BUTTON
@@ -213,7 +211,7 @@ public class Op_level1 extends Activity{
                         });
 
                     //refreshing the container
-                    game.mountAgain(nodes,container);
+                    nodes = game.mountAgain(nodes,container);
 
                     //TODO: if the container has only one node left, show you won and ask the learner to move to the next level
                     if(nodes.size() == 1){
@@ -224,14 +222,10 @@ public class Op_level1 extends Activity{
                         options.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
                         //bring in all the buttons
                         next.setVisibility(View.VISIBLE);
-                        previous.setVisibility(View.VISIBLE);
                         again.setVisibility(View.VISIBLE);
                         YoYo.with(Techniques.BounceInLeft)
                                 .duration(750)
                                 .playOn(next);
-                        YoYo.with(Techniques.BounceInRight)
-                                .duration(750)
-                                .playOn(previous);
                         YoYo.with(Techniques.BounceInDown)
                                 .duration(1000)
                                 .playOn(again);
@@ -243,5 +237,11 @@ public class Op_level1 extends Activity{
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent go_to_practice = new Intent(Op_level1.this,Operator_practice.class);
+        startActivity(go_to_practice);
     }
 }

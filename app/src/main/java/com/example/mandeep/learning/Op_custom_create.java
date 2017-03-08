@@ -213,4 +213,11 @@ public class Op_custom_create extends Activity {
         });
         //TODO: Add for ++ and -- too
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent go_to_practice = new Intent(Op_custom_create.this,Operator_practice.class);
+        startActivity(go_to_practice);
+    }
 }

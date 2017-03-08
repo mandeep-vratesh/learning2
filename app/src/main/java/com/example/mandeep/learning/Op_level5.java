@@ -31,8 +31,8 @@ import java.util.ArrayList;
  * Created by MANDEEP on 1/23/2017.
  */
 
-public class Op_level2 extends Activity{
-    String[] string_input = {"1", "*", "2", "+", "3", "-", "8"};
+public class Op_level5 extends Activity{
+    String[] string_input = {"1","*","4","*","(","3","+","8","+","(","6","/","3",")","+","(","7","*","4","+","(","6","-","2",")",")",")"};
     ArrayList<Node> nodes,active_nodes,result_nodes;
     private Button run, next, previous, again;
     private Game game = new Game();
@@ -101,23 +101,23 @@ public class Op_level2 extends Activity{
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_next_stage = new Intent(Op_level2.this,Op_level1.class);
+                Intent go_to_next_stage = new Intent(Op_level5.this,Op_level4.class);
                 startActivity(go_to_next_stage);
             }
         });
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent go_to_next_stage = new Intent(Op_level2.this,Op_level3.class);
-                startActivity(go_to_next_stage);
-            }
-        });
+//        next.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent go_to_next_stage = new Intent(Op_level3.this,Op_level4.class);
+//                startActivity(go_to_next_stage);
+//            }
+//        });
 
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_next_stage = new Intent(Op_level2.this,Op_level2.class);
+                Intent go_to_next_stage = new Intent(Op_level5.this,Op_level5.class);
                 startActivity(go_to_next_stage);
             }
         });
@@ -222,12 +222,12 @@ public class Op_level2 extends Activity{
                         //reset size of layout
                         options.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
                         //bring in all the buttons
-                        next.setVisibility(View.VISIBLE);
+//                        next.setVisibility(View.VISIBLE);
                         previous.setVisibility(View.VISIBLE);
                         again.setVisibility(View.VISIBLE);
-                        YoYo.with(Techniques.BounceInLeft)
-                                .duration(750)
-                                .playOn(next);
+//                        YoYo.with(Techniques.BounceInLeft)
+//                                .duration(750)
+//                                .playOn(next);
                         YoYo.with(Techniques.BounceInRight)
                                 .duration(750)
                                 .playOn(previous);
@@ -243,11 +243,10 @@ public class Op_level2 extends Activity{
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent go_to_practice = new Intent(Op_level2.this,Operator_practice.class);
+        Intent go_to_practice = new Intent(Op_level5.this,Operator_practice.class);
         startActivity(go_to_practice);
     }
 }

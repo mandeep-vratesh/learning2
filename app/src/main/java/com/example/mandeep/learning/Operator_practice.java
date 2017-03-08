@@ -14,7 +14,7 @@ import com.daimajia.androidanimations.library.YoYo;
  */
 
 public class Operator_practice extends Activity {
-    private Button stage1, stage2, custom;
+    private Button stage1, stage2, stage3, stage4, stage5, custom;
 
     @Override
     protected void onStart() {
@@ -47,6 +47,9 @@ public class Operator_practice extends Activity {
         custom = (Button) findViewById(R.id.custom);
         stage1 = (Button) findViewById(R.id.stage1);
         stage2 = (Button) findViewById(R.id.stage2);
+        stage3 = (Button) findViewById(R.id.stage3);
+        stage4 = (Button) findViewById(R.id.stage4);
+        stage5 = (Button) findViewById(R.id.stage5);
 
         custom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,5 +74,35 @@ public class Operator_practice extends Activity {
                 startActivity(go_to_learn);
             }
         });
+
+        stage3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_learn = new Intent(Operator_practice.this,Op_level3.class);
+                startActivity(go_to_learn);
+            }
+        });
+
+        stage4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_learn = new Intent(Operator_practice.this,Op_level4.class);
+                startActivity(go_to_learn);
+            }
+        });
+
+        stage5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_learn = new Intent(Operator_practice.this,Op_level5.class);
+                startActivity(go_to_learn);
+            }
+        });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent go_to_practice = new Intent(Operator_practice.this,MainActivity.class);
+        startActivity(go_to_practice);
     }
 }

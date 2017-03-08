@@ -61,8 +61,30 @@ public class Game {
      */
     public int findHighestOperator(ArrayList<Node> input){
         String hasMaxPrecedence = input.get(0).getButton().getText().toString();
-        int hasMaxPrecedenceIndex = 0,index=0;
-
+        int hasMaxPrecedenceIndex = 0, index=0, bracket_index=-1;
+        //find the first closing bracket
+        for(int i=0;i<input.size();i++){
+            if(input.get(i).getButton().getText().toString().compareTo(")") == 0){
+                //find the nearest opening bracket
+                bracket_index = i;
+                while(input.get(bracket_index).getButton().getText().toString().compareTo("(") != 0){
+                    bracket_index-=1;
+                }
+                break;
+            }
+        }
+        //loop from that position to the closing backet and transform the input
+        if(bracket_index != -1){
+            ArrayList<Node> newInput = new ArrayList<>();
+            for(int i = bracket_index+1; ;i++){
+                if(input.get(i).getButton().getText().toString().compareTo(")") != 0){
+                    newInput.add(input.get(i));
+                }else {
+                    break;
+                }
+            }
+            return bracket_index + this.findHighestOperator(newInput) + 1; //TODO:add something
+        }
         for(int i=0;i<input.size();i++){
             if(!isInteger(input.get(i).getButton().getText().toString())){
                 hasMaxPrecedence = input.get(i).getButton().getText().toString();
@@ -103,17 +125,31 @@ public class Game {
 //        }
 //    }
 
-    public void mountAgain(ArrayList<Node> arrayList, LinearLayout linearLayout){
+    public ArrayList<Node> mountAgain(ArrayList<Node> arrayList, LinearLayout linearLayout){
+        ArrayList<Node> input = new ArrayList<>();
         linearLayout.removeAllViews();
-        for (Node i: arrayList ) {
-            linearLayout.addView(i.getButton());
+        for (int index = 0; index<arrayList.size(); index++) {
+            if(arrayList.get(index).getButton().getText().toString().compareTo("(") == 0){
+                if(arrayList.get(index+2).getButton().getText().toString().compareTo(")") == 0){
+                    arrayList.remove(index+2);
+                    arrayList.remove(index);
+                    index-=1;
+                }else{
+                    input.add(arrayList.get(index));
+                    linearLayout.addView(arrayList.get(index).getButton());
+                }
+            }else{
+                input.add(arrayList.get(index));
+                linearLayout.addView(arrayList.get(index).getButton());
+            }
         }
         Log.d("===============>","mounted again");
+        return input;
     }
 
     /**
      *
-     * @param arrayList
+     * @param result_nodes
      * @param index
      * @param from
      */

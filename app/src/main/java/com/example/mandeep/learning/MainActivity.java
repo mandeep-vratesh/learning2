@@ -52,4 +52,10 @@ public class MainActivity extends Activity {
                 .duration(850)
                 .playOn(findViewById(R.id.operator_learn));
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        MainActivity.this.finish();
+    }
 }

@@ -9,7 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Vibrator;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -17,12 +19,17 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 /**
  * This custom level lets user enter his/her own problem statement based on operator precedence.
@@ -36,7 +43,7 @@ public class Op_custom_level extends Activity{
     String[] string_input;
 
     ArrayList<Node> nodes,active_nodes,result_nodes;
-    private Button run;
+    private Button run, again;
     private Game game = new Game();
     int pushIndex;
 
@@ -49,6 +56,7 @@ public class Op_custom_level extends Activity{
         string_input = bundle.getStringArray("input");
 
         //creating layout
+        final RelativeLayout options = (RelativeLayout) findViewById(R.id.options);
         final LinearLayout container = (LinearLayout) findViewById(R.id.container);
         //arraylist of node
         nodes = new ArrayList<>();
@@ -62,31 +70,51 @@ public class Op_custom_level extends Activity{
             Button button = new Button(getApplicationContext());
             button.setText(i);
             button.setGravity(Gravity.CENTER);
+
             //adding button to the node
             nodes.add(new Node(button,false));
             //setting on click listener
             final int finalNode_index = node_index;
+
             nodes.get(node_index).getButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(!nodes.get(finalNode_index).isActive()) {
                         nodes.get(finalNode_index).setActive(true);
                         nodes.get(finalNode_index).getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                        YoYo.with(Techniques.RubberBand)
+                                .duration(1000)
+                                .playOn(view);
                     }
                     else {
                         nodes.get(finalNode_index).setActive(false);
                         nodes.get(finalNode_index).getButton().getBackground().clearColorFilter();
+                        YoYo.with(Techniques.RubberBand)
+                                .duration(1000)
+                                .playOn(view);
                     }
                 }
             });
 
             //adding button to layout
             container.addView(nodes.get(node_index).getButton());
-
+            //add animation
+            YoYo.with(Techniques.StandUp)
+                    .duration(1500)
+                    .playOn(button);
             node_index++;
         }
 
+    //CODE RELATED TO STAGE BUTTONS
+        again = (Button) findViewById(R.id.again);
 
+        again.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent go_to_next_stage = new Intent(Op_custom_level.this,Op_custom_create.class);
+                startActivity(go_to_next_stage);
+            }
+        });
 
         //CODE RELATED TO THE RUN BUTTON
 
@@ -94,9 +122,9 @@ public class Op_custom_level extends Activity{
         run = (Button) findViewById(R.id.run);
         //attach on click listener
         run.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onClick(View view) {
-
                 //clear the active nodes and result nodes
                 active_nodes.clear();
                 result_nodes.clear();
@@ -117,7 +145,6 @@ public class Op_custom_level extends Activity{
                 //compare the active nodes and the result nodes from above
                 if(game.compare(active_nodes,result_nodes)){
                     Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
-
                     //get all nodes and add to the log linearlayout
                     //create linear layout object
                     LinearLayout log_container = (LinearLayout) findViewById(R.id.log);
@@ -144,12 +171,14 @@ public class Op_custom_level extends Activity{
                     //add this to container
                     log_container.addView(log);
 
+
                     int result = game.calculateResult(active_nodes);
                     for (Node i: active_nodes) {
                         pushIndex = nodes.indexOf(i);
                         nodes.remove(i);
                     }
 
+                    //creating a button with the result
                     Button button = new Button(getApplicationContext());
                     button.setText(""+result);
                     button.setGravity(Gravity.CENTER);
@@ -163,25 +192,35 @@ public class Op_custom_level extends Activity{
                                 if (!i.isActive()) {
                                     i.setActive(true);
                                     i.getButton().getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                                    YoYo.with(Techniques.RubberBand)
+                                            .duration(1000)
+                                            .playOn(view);
                                 } else {
                                     i.setActive(false);
                                     i.getButton().getBackground().clearColorFilter();
+                                    YoYo.with(Techniques.RubberBand)
+                                            .duration(1000)
+                                            .playOn(view);
                                 }
                             }
                         });
 
-                    for (Node i: nodes) {
-                        Log.d("===============>",i.getButton().getText().toString()+" "+nodes.indexOf(i));
-                    }
-
                     //refreshing the container
-                    game.mountAgain(nodes,container);
+                    nodes = game.mountAgain(nodes,container);
 
-                    //if the container has only one node left, show you won and ask the learner to move to the next level
+                    //TODO: if the container has only one node left, show you won and ask the learner to move to the next level
                     if(nodes.size() == 1){
                         Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT).show();
+                        //disable run button
+                        run.setVisibility(View.INVISIBLE);
+                        //reset size of layout
+                        options.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                        //bring in all the buttons
+                        again.setVisibility(View.VISIBLE);
+                        YoYo.with(Techniques.BounceInDown)
+                                .duration(1000)
+                                .playOn(again);
                     }
-
                 }else{
                     Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(200);
@@ -189,5 +228,11 @@ public class Op_custom_level extends Activity{
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent go_to_practice = new Intent(Op_custom_level.this,Operator_practice.class);
+        startActivity(go_to_practice);
     }
 }
