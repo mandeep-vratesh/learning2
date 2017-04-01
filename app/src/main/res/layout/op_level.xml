@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#F79647"
     android:gravity="top"
     android:orientation="vertical"
     android:id="@+id/show_popups_here">
@@ -10,7 +10,8 @@
     <RelativeLayout
         android:id="@+id/options"
         android:layout_width="match_parent"
-        android:layout_height="1dp">
+        android:layout_height="1dp"
+        android:background="@android:color/transparent">
         <Button
             android:text="NEXT"
             android:id="@+id/next"
@@ -18,7 +19,8 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:visibility="invisible"/>
         <Button
             android:text="PLAY AGAIN"
@@ -26,7 +28,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             android:visibility="invisible" />
         <Button
             android:text="PREV"
@@ -35,7 +37,8 @@
             android:layout_alignParentLeft="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:visibility="invisible" />
     </RelativeLayout>
     <LinearLayout
@@ -48,10 +51,14 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginLeft="75dp"
+                android:layout_marginRight="75dp"
                 android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/blackboard"
+                android:paddingTop="15dp"
                 android:id="@+id/log">
 
             </LinearLayout>
@@ -67,13 +74,16 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center"
+            android:foregroundGravity="center">
 
             <LinearLayout
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:foregroundGravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:orientation="horizontal"

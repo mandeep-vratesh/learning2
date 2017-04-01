@@ -77,7 +77,6 @@
             android:layout_height="50dp"
             android:background="#FF6C00"
             android:layout_width="450dp"
-
             android:gravity="center_vertical"
             android:layout_gravity="right"
             android:text="Practice"
@@ -87,6 +86,19 @@
             android:textColor="#ffffff"
             android:layout_marginRight="10dp"
             android:id="@+id/operator_practice" />
+        <Button
+            android:layout_height="50dp"
+            android:background="#FF6C00"
+            android:layout_width="450dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="right"
+            android:text="Test"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+            android:layout_marginRight="10dp"
+            android:id="@+id/operator_test" />
     </LinearLayout>
 
     <!--</ScrollView>-->

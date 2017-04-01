@@ -18,75 +18,80 @@ public class Game {
     //post elements to be removed
     private HashMap<String, Integer> post_remove_table = new HashMap<String, Integer>();
 
-    public Game(){
+    public Game() {
         //1 is highest, 100 is lowest
-        precedence_table.put("++",1);
-        pre_remove_table.put("++",1);
-        post_remove_table.put("++",1);
+        precedence_table.put("++", 1);
+        pre_remove_table.put("++", 1);
+        post_remove_table.put("++", 1);
 
-        precedence_table.put("*",2);
-        pre_remove_table.put("*",1);
-        post_remove_table.put("*",1);
+        precedence_table.put("*", 2);
+        pre_remove_table.put("*", 1);
+        post_remove_table.put("*", 1);
 
-        precedence_table.put("+",3);
-        pre_remove_table.put("+",1);
-        post_remove_table.put("+",1);
+        precedence_table.put("/", 2);
+        pre_remove_table.put("/", 1);
+        post_remove_table.put("/", 1);
 
-        precedence_table.put("-",3);
-        pre_remove_table.put("-",1);
-        post_remove_table.put("-",1);
+        precedence_table.put("+", 3);
+        pre_remove_table.put("+", 1);
+        post_remove_table.put("+", 1);
+
+        precedence_table.put("-", 3);
+        pre_remove_table.put("-", 1);
+        post_remove_table.put("-", 1);
     }
 
 
     /**
-     *
      * @param s
      * @return
      */
     public static boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             return false;
         }
         // only got here if we didn't return false
         return true;
     }
+
     /**
      * The method finds out the operator with max precedence in the given array of operators.
+     *
      * @param input the string array of operators.
      * @return the index of operator with max precedence
      */
-    public int findHighestOperator(ArrayList<Node> input){
+    public int findHighestOperator(ArrayList<Node> input) {
         String hasMaxPrecedence = input.get(0).getButton().getText().toString();
-        int hasMaxPrecedenceIndex = 0, index=0, bracket_index=-1;
+        int hasMaxPrecedenceIndex = 0, index = 0, bracket_index = -1;
         //find the first closing bracket
-        for(int i=0;i<input.size();i++){
-            if(input.get(i).getButton().getText().toString().compareTo(")") == 0){
+        for (int i = 0; i < input.size(); i++) {
+            if (input.get(i).getButton().getText().toString().compareTo(")") == 0) {
                 //find the nearest opening bracket
                 bracket_index = i;
-                while(input.get(bracket_index).getButton().getText().toString().compareTo("(") != 0){
-                    bracket_index-=1;
+                while (input.get(bracket_index).getButton().getText().toString().compareTo("(") != 0) {
+                    bracket_index -= 1;
                 }
                 break;
             }
         }
         //loop from that position to the closing backet and transform the input
-        if(bracket_index != -1){
+        if (bracket_index != -1) {
             ArrayList<Node> newInput = new ArrayList<>();
-            for(int i = bracket_index+1; ;i++){
-                if(input.get(i).getButton().getText().toString().compareTo(")") != 0){
+            for (int i = bracket_index + 1; ; i++) {
+                if (input.get(i).getButton().getText().toString().compareTo(")") != 0) {
                     newInput.add(input.get(i));
-                }else {
+                } else {
                     break;
                 }
             }
             return bracket_index + this.findHighestOperator(newInput) + 1; //TODO:add something
         }
-        for(int i=0;i<input.size();i++){
-            if(!isInteger(input.get(i).getButton().getText().toString())){
+        for (int i = 0; i < input.size(); i++) {
+            if (!isInteger(input.get(i).getButton().getText().toString())) {
                 hasMaxPrecedence = input.get(i).getButton().getText().toString();
                 hasMaxPrecedenceIndex = i;
                 break;
@@ -94,15 +99,15 @@ public class Game {
         }
 
         for (Node i : input) {
-            if(isInteger(i.getButton().getText().toString())){
+            if (isInteger(i.getButton().getText().toString())) {
                 index++;
                 continue;
             }
-            if(precedence_table.get(i.getButton().getText().toString()) < precedence_table.get(hasMaxPrecedence)){
+            if (precedence_table.get(i.getButton().getText().toString()) < precedence_table.get(hasMaxPrecedence)) {
                 hasMaxPrecedence = i.getButton().getText().toString();
                 hasMaxPrecedenceIndex = index;
             }
-        index++;
+            index++;
         }
         return hasMaxPrecedenceIndex;
     }
@@ -125,55 +130,55 @@ public class Game {
 //        }
 //    }
 
-    public ArrayList<Node> mountAgain(ArrayList<Node> arrayList, LinearLayout linearLayout){
+    public ArrayList<Node> mountAgain(ArrayList<Node> arrayList, LinearLayout linearLayout) {
         ArrayList<Node> input = new ArrayList<>();
         linearLayout.removeAllViews();
-        for (int index = 0; index<arrayList.size(); index++) {
-            if(arrayList.get(index).getButton().getText().toString().compareTo("(") == 0){
-                if(arrayList.get(index+2).getButton().getText().toString().compareTo(")") == 0){
-                    arrayList.remove(index+2);
+        for (int index = 0; index < arrayList.size(); index++) {
+            if (arrayList.get(index).getButton().getText().toString().compareTo("(") == 0) {
+                if (arrayList.get(index + 2).getButton().getText().toString().compareTo(")") == 0) {
+                    arrayList.remove(index + 2);
                     arrayList.remove(index);
-                    index-=1;
-                }else{
+                    index -= 1;
+                } else {
                     input.add(arrayList.get(index));
                     linearLayout.addView(arrayList.get(index).getButton());
                 }
-            }else{
+            } else {
                 input.add(arrayList.get(index));
                 linearLayout.addView(arrayList.get(index).getButton());
             }
         }
-        Log.d("===============>","mounted again");
+        Log.d("===============>", "mounted again");
         return input;
     }
 
     /**
-     *
      * @param result_nodes
      * @param index
      * @param from
      */
     public void getNodesToRemove(ArrayList<Node> result_nodes, int index, ArrayList<Node> from) {
-        for (int i=-pre_remove_table.get(from.get(index).getButton().getText().toString()); i<=post_remove_table.get(from.get(index).getButton().getText().toString());i++){
-            result_nodes.add(from.get(index+i));
+        for (int i = -pre_remove_table.get(from.get(index).getButton().getText().toString()); i <= post_remove_table.get(from.get(index).getButton().getText().toString()); i++) {
+            result_nodes.add(from.get(index + i));
         }
     }
 
     /**
      * Compares the elements of two arrayLists
+     *
      * @param active_nodes the nodes which are active on screen
      * @param result_nodes the nodes which must be active
      * @return
      */
     public boolean compare(ArrayList<Node> active_nodes, ArrayList<Node> result_nodes) {
         for (Node i : active_nodes) {
-            if(result_nodes.contains(i)){
+            if (result_nodes.contains(i)) {
                 result_nodes.remove(i);
-            }else{
+            } else {
                 return false;
             }
         }
-        if(result_nodes.isEmpty())
+        if (result_nodes.isEmpty())
             return true;
         else
             return false;
@@ -181,6 +186,7 @@ public class Game {
 
     /**
      * Calculates the result of a string of expression given the string expression has maximum of 2 operators and 1 operand
+     *
      * @param active_nodes the set of nodes containing the string expression
      * @return the result of the expression
      */
@@ -193,28 +199,41 @@ public class Game {
             //get node button text
             text = i.getButton().getText().toString();
             //parse them
-            try{
-                if(flag){
+            try {
+                if (flag) {
                     operator1 = Integer.parseInt(text);
                     flag = false;
-                }else{
+                } else {
                     operator2 = Integer.parseInt(text);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 operand = text;
             }
-
-            //solve them
-            switch (operand){
-                case "+" : answer = operator1 + operator2;break;
-                case "-" : answer = operator1 - operator2;break;
-                case "*" : answer = operator1 * operator2;break;
-                case "/" : answer = operator1 / operator2;break;
-                case "++": answer = operator1++;break;
-                case "--": answer = operator1--;break;
-                default: answer = 0;
-            }
         }
+        //solve them
+        switch (operand) {
+            case "+":
+                answer = operator1 + operator2;
+                break;
+            case "-":
+                answer = operator1 - operator2;
+                break;
+            case "*":
+                answer = operator1 * operator2;
+                break;
+            case "/":
+                answer = operator1 / operator2;
+                break;
+            case "++":
+                answer = operator1++;
+                break;
+            case "--":
+                answer = operator1--;
+                break;
+            default:
+                answer = 0;
+        }
+
         return answer;
     }
 

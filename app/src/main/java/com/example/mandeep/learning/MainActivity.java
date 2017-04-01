@@ -12,7 +12,7 @@ import com.daimajia.androidanimations.library.YoYo;
 
 public class MainActivity extends Activity {
 
-    private Button operator_learn, operator_practice;
+    private Button operator_learn, operator_practice, operator_test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

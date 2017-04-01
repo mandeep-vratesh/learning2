@@ -150,7 +150,9 @@ public class Op_level2 extends Activity{
 
                 //compare the active nodes and the result nodes from above
                 if(game.compare(active_nodes,result_nodes)){
-                    Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(getApplicationContext(), "You are going good !", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM|Gravity.LEFT, 0, 0);
+                    toast.show();
                     //get all nodes and add to the log linearlayout
                     //create linear layout object
                     LinearLayout log_container = (LinearLayout) findViewById(R.id.log);
@@ -216,7 +218,9 @@ public class Op_level2 extends Activity{
 
                     //TODO: if the container has only one node left, show you won and ask the learner to move to the next level
                     if(nodes.size() == 1){
-                        Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT).show();
+                        toast = Toast.makeText(getApplicationContext(), "You won !", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.BOTTOM|Gravity.LEFT, 0, 0);
+                        toast.show();
                         //disable run button
                         run.setVisibility(View.INVISIBLE);
                         //reset size of layout
@@ -238,8 +242,9 @@ public class Op_level2 extends Activity{
                 }else{
                     Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(200);
-                    Toast.makeText(getApplicationContext(), "Check for the highest operator", Toast.LENGTH_SHORT).show();
-                }
+                    Toast toast = Toast.makeText(getApplicationContext(), "Check for the highest operator", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM|Gravity.LEFT, 0, 0);
+                    toast.show();                }
             }
         });
     }
