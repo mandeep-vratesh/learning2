@@ -29,6 +29,8 @@
             android:screenOrientation="landscape"/>
         <activity android:name=".Op_custom_create"
             android:screenOrientation="landscape"/>
+        <activity android:name=".Hint"
+            android:screenOrientation="landscape"/>
 
         <activity android:name=".Op_level1"
             android:screenOrientation="landscape"/>

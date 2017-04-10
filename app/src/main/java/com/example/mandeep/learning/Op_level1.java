@@ -107,7 +107,8 @@ public class Op_level1 extends Activity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent go_to_next_stage = new Intent(Op_level1.this,Op_level2.class);
+                Intent go_to_next_stage = new Intent(Op_level1.this,Hint.class);
+                go_to_next_stage.putExtra("type", "*");
                 startActivity(go_to_next_stage);
             }
         });
